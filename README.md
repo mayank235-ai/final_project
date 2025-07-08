@@ -23,7 +23,7 @@ A smarter model that adjusts pricing based on a custom demand function, consider
 
 This model feels more realistic and responsive to real-world signals.
 
-###  Model 3: Competitive Pricing (Optional)
+###  Model 3: Competitive Pricing 
 This one considers competitor lots nearby (using coordinates) and adjusts pricing accordingly. It's not required, but I added it to explore pricing under competition.
 
 ##  Tech Stack
