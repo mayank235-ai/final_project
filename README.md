@@ -69,3 +69,22 @@ Using **Bokeh**, I created:
    !pip install pathway bokeh pandas numpy
 4.Run cells in order — the models will stream data and generate price plots live.
 5.Optional: Use the JSONL outputs to re-plot or compare models.
+
+
+---
+
+## 🧭 Architecture Flow
+
+Here’s a simple overview of how this real-time pricing system flows from raw data to visualization:
+
+```mermaid
+flowchart TD
+    A[📁 final-project.csv\nInput Data] --> B[🔄 Pathway\nStreaming Ingestion]
+    B --> C1[⚙️ Model 1 Logic\nLinear Pricing UDF]
+    B --> C2[⚙️ Model 2 Logic\nDemand-Based UDF]
+    C1 --> D1[📝 model1_output_stream.jsonl]
+    C2 --> D2[📝 model2_output_stream.jsonl]
+    D1 --> E[📈 Bokeh Plot\nModel 1]
+    D2 --> E[📈 Bokeh Plot\nModel 2]
+    E --> F[💡 Final Comparison Plot]
+
