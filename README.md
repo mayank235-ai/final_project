@@ -1,90 +1,93 @@
-# Real-Time Dynamic Parking Pricing System 🚗📊
+# Real-Time Dynamic Parking Pricing System 
 
-Hi, I'm **Mayank Mishra** — and this is my final project submission for building a real-time, dynamic parking pricing system. 
+Hi, I'm **Mayank Mishra**, and this is my submission for a real-time dynamic parking pricing system — built entirely in Python using Google Colab, Pathway, and Bokeh.
 
-In this project, I aimed to simulate how parking prices can be adjusted intelligently based on real-time conditions like traffic, queue lengths, special days, and vehicle types. I’ve used **Pathway** to stream data in a time-sensitive way and **Bokeh** to visualize how prices evolve as the situation changes.
+The goal was to simulate and implement pricing strategies for urban parking lots based on live data like occupancy, queue lengths, traffic, and nearby competition. I’ve used **Pathway** for streaming data and **Bokeh** for plotting live price trends.
 
 ---
 
-## What This Project Covers
+## 💡 What This Project Covers
 
-I built and compared 3 pricing models to understand how different strategies perform under real-time data:
+I built and compared three different models:
 
 ###  Model 1: Baseline Linear Pricing
-A simple model where the price increases linearly as occupancy increases. It's basic, but serves as a solid reference point.
+A simple model where price increases proportionally with occupancy. It’s used as a reference for more intelligent models.
 
 ###  Model 2: Demand-Based Pricing
-A smarter model that adjusts pricing based on a custom demand function, considering:
-- occupancy rate
-- queue length
-- traffic level
-- whether it's a special day
-- type of vehicle
-
-This model feels more realistic and responsive to real-world signals.
+This model dynamically adjusts pricing based on:
+- Occupancy rate
+- Queue length
+- Traffic conditions
+- Special days (e.g., holidays)
+- Vehicle type
 
 ###  Model 3: Competitive Pricing 
-This one considers competitor lots nearby (using coordinates) and adjusts pricing accordingly. It's not required, but I added it to explore pricing under competition.
+This model factors in nearby parking lots using their lat-long positions and adjusts prices based on competition.
+
+---
 
 ##  Tech Stack
 
-This whole project runs in **Google Colab**, using:
-
 - **Python**
-- **Pathway** – for real-time data simulation and stream processing
-- **Bokeh** – to create live visualizations
-- **Pandas** and **NumPy** – for working with tabular data
-
-## 📂 Project Files
-
-| File | Purpose |
-|------|---------|
-| `final-project.ipynb` | The main notebook with all models and visuals |
-| `final-project.csv` | Raw dataset used for simulation |
-| `model1_output_stream.jsonl` | Streaming output from Model 1 |
-| `model2_output_stream.jsonl` | Streaming output from Model 2 |
-| `requirements.txt` | All packages needed to run the notebook |
-| `README.md` | You're reading it :) |
-
-##  Visuals Included
-
-Using **Bokeh**, I created:
-- Individual price trend plots for Model 1 and Model 2
-- A comparison plot showing both models side-by-side
-- Real-time-like behavior using animated (or static) price updates
-
-##  Assumptions Made
-
-- The data is simulated row-by-row using Pathway’s `mode="streaming"`.
-- Demand-based pricing is capped between ₹5 and ₹25 for practical reasons.
-- Some simplifications were made to ensure the notebook runs smoothly in Colab.
-- Not all traffic or vehicle types are deeply modeled — just enough for logic simulation.
-
-##  How to Run It Yourself
-
-1. Open `final-project.ipynb` in Google Colab
-2. Upload the dataset: `final-project.csv`
-3. Install the dependencies:
-   ```python
-   !pip install pathway bokeh pandas numpy
-4.Run cells in order — the models will stream data and generate price plots live.
-5.Optional: Use the JSONL outputs to re-plot or compare models.
-
+- **Google Colab** for development
+- **Pathway** for real-time streaming simulation
+- **Bokeh** for live visualizations
+- **Pandas & NumPy** for data processing
 
 ---
 
-## 🧭 Architecture Flow
+## 📁 Project Structure
 
-Here’s a simple overview of how this real-time pricing system flows from raw data to visualization:
+| File | Description |
+|------|-------------|
+| `final-project.ipynb` | Main notebook with all models & Bokeh plots |
+| `final-project.csv` | Raw dataset simulating real-time parking data |
+| `model1_output_stream.jsonl` | Output of Model 1 (streamed via Pathway) |
+| `model2_output_stream.jsonl` | Output of Model 2 (streamed via Pathway) |
+| `requirements.txt` | All packages used in the project |
+| `README.md` | You’re reading it 🙂 |
 
-```mermaid
+---
+
+##  Visualizations
+
+All visualizations were made using Bokeh:
+- Real-time pricing graphs for both models
+- A comparison plot showing Model 1 vs Model 2
+- Either animated or static based on performance
+
+---
+
+##  Assumptions
+
+- Prices are bounded between ₹5 and ₹25.
+- Demand is normalized between 0 and 1.
+- Data is ingested in streaming mode (via Pathway) to simulate real-time scenarios.
+- Vehicle type, traffic, and special day flags impact demand score in Model 2.
+
+---
+
+##  How to Run
+
+1. Open `final-project.ipynb` in Google Colab
+2. Upload `final-project.csv`
+3. Install required packages:
+
+```python
+!pip install pathway==0.6.6 bokeh==3.4.1 pandas==2.2.2 numpy==1.24.4
+
+4. Run all cells in order
+5. Let Pathway stream the data and observe pricing in the Bokeh plots
+
+##  Architecture Flow
 flowchart TD
-    A[📁 final-project.csv\nInput Data] --> B[🔄 Pathway\nStreaming Ingestion]
-    B --> C1[⚙️ Model 1 Logic\nLinear Pricing UDF]
-    B --> C2[⚙️ Model 2 Logic\nDemand-Based UDF]
-    C1 --> D1[📝 model1_output_stream.jsonl]
-    C2 --> D2[📝 model2_output_stream.jsonl]
-    D1 --> E[📈 Bokeh Plot\nModel 1]
-    D2 --> E[📈 Bokeh Plot\nModel 2]
+    A[📁 final-project.csv\nInput Data] --> B[ Pathway\nStreaming Ingestion]
+    B --> C1[ Model 1 Logic\nLinear Pricing UDF]
+    B --> C2[ Model 2 Logic\nDemand-Based UDF]
+    C1 --> D1[ model1_output_stream.jsonl]
+    C2 --> D2[ model2_output_stream.jsonl]
+    D1 --> E[ Bokeh Plot\nModel 1]
+    D2 --> E[ Bokeh Plot\nModel 2]
     E --> F[💡 Final Comparison Plot]
+
 
