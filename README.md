@@ -36,7 +36,7 @@ This model factors in nearby parking lots using their lat-long positions and adj
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 | File | Description |
 |------|-------------|
