@@ -6,7 +6,7 @@ The goal was to simulate and implement pricing strategies for urban parking lots
 
 ---
 
-## 💡 What This Project Covers
+##  What This Project Covers
 
 I built and compared three different models:
 
@@ -88,6 +88,6 @@ flowchart TD
     C2 --> D2[ model2_output_stream.jsonl]
     D1 --> E[ Bokeh Plot\nModel 1]
     D2 --> E[ Bokeh Plot\nModel 2]
-    E --> F[💡 Final Comparison Plot]
+    E --> F[ Final Comparison Plot]
 
 
